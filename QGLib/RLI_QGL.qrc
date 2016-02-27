@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>RLI_QGL/fonts/segoeui.ttf</file>
+        <file>RLI_QGL/fonts/segoeuib.ttf</file>
+        <file>RLI_QGL/fonts/segoeuil.ttf</file>
+        <file>RLI_QGL/fonts/SEGOEUISL.TTF</file>
+        <file>RLI_QGL/fonts/seguisb.ttf</file>
+    </qresource>
+</RCC>
