@@ -1,16 +1,15 @@
 #ACCREDITATION & LICENSING
 [NOTE THAT THE LICENSE USED IN THIS SOFTWARE AND ITS TERMS ARE LIABLE TO CHANGE AND IT IS YOUR RESPONSIBILITY AS A USER OF THIS SOFTWARE TO TAKE NOTE OF THOSE CHANGES. BY USING, MODIFYING, OR INCORPORATING THIS PROJECT INTO YOUR OWN WORK, YOU INDICATE THAT YOU AGREE TO THESE TERMS; TO CEASE FOLLOWING THE AGREEMENT, CEASE ALL USE OF THE HAMS SYSTEM OR ITS VARIOUS PARTS IN ALL PROJECTS. IF YOU HAVE HAMS IN ANY PROJECT THIS AGREEMENT STILL STANDS]
 
-IF AT ANY POINT ARGZERO IS USED AS A TITLE IN THIS DOCUMENT, IT MAY BE INTERCHANGED WITH FORREST ZACHARY SHOOSTER, EXCEPT UNDER CIRCUMSTANCES WHICH LAW REQUIRES ARGZERO'S REAL NAME TO AUTHORIZE OR RESTRICT USAGE OR LICENSING OF THIS PROJECT. ESSENTIALLY, IF IT APPLIES TO ARGZERO, IT ALSO APPLIES TO FORREST ZACHARY SHOOSTER.
+IF AT ANY POINT ARGZERO IS USED AS A TITLE IN THIS DOCUMENT, IT MAY BE INTERCHANGED WITH FORREST ZACHARY SHOOSTER. ESSENTIALLY, IF IT APPLIES TO ARGZERO, IT ALSO APPLIES TO FORREST ZACHARY SHOOSTER.
 
-To use the Haxe Audio Management System, You must give credit to Argzero for use. Otherwise, you may feel free to modify the code or use it in other projects, however know that in modifying the code for your purposes you should (MUST) notify Argzero of your use of HAMS at his email at forrest@argzero.org. If Argzero is already aware of your use of his project, you are excluded from the requirement of notifying him of your use of the AudioManager.
+To use the Argzero QGLib (AQGL), You must give credit to Argzero for use. Otherwise, you may feel free to modify the code or use it in other projects, however know that in modifying the code for your purposes you should (MUST) notify Argzero of your use of AQGL at his email at forrest@argzero.org. If Argzero is already aware of your use of his project, you are excluded from the requirement of notifying him of your use of AQGL.
 
-Additionally, Argzero does humbly request that you notify him of any improvements you have come up with for his HAMS so that he may continue to provide quality HAMS in the future both for your sake and his.
+Additionally, Argzero does humbly request that you notify him of any improvements you have come up with for his AQGL so that he may continue to provide quality AQGL in the future both for your sake and his.
 
-Argzero is available to help you with your integration of this project upon request. Please send all requests to his email as stated in the above paragraph. Currently this is a free service available to any who request it. Be aware, however, that Argzero is also only human and has a job too. That said, you can probably expect a response within 2 days.
+Argzero is available to help you with your integration of this upon request. Please send all requests to his email as stated in the above paragraph. Currently this is a free service available to any who request it. Be aware, however, that Argzero is also only human and has a job too. That said, you can probably expect a response within 2 business days. If not, post an issue here stating that he has not responded to you. It is quite possible that Argzero's email provider labeled your message as spam.
 
-The music belongs to Argzero under Creative Commons.
-The [spritesheet art](http://opengameart.org/content/base-character-spritesheet-16x16) belongs to a user on the open game art website under CC0 license but Argzero thought it kind to put a link here.
+The music[which will be here] belongs to Argzero under Creative Commons.
 
 PLEASE REFER TO THE GNU GENERAL PUBLIC LICENSE v2.0 AS INCLUDED BELOW FOR ALL TERMS NOT STATED ABOVE. 
 DO NOTE, THAT ARGZERO'S STATEMENTS ABOVE, AS WELL AS ANY PIECE OF WRITING WHICH HE CHOOSES TO ADD TO THIS REPO THAT STATES OTHERWISE MAY OVERRIDE THE TERMS OF THE GNU AS THEY APPLY TO THIS PROGRAM.
