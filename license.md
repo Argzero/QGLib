@@ -7,12 +7,13 @@ To use the Argzero QGLib (AQGL), You must give credit to Argzero for use. Otherw
 
 Additionally, Argzero does humbly request that you notify him of any improvements you have come up with for his AQGL so that he may continue to provide quality AQGL in the future both for your sake and his.
 
-Argzero is available to help you with your integration of this upon request. Please send all requests to his email as stated in the above paragraph. Currently this is a free service available to any who request it. Be aware, however, that Argzero is also only human and has a job too. That said, you can probably expect a response within 2 business days. If not, post an issue here stating that he has not responded to you. It is quite possible that Argzero's email provider labeled your message as spam.
+Argzero is available to help you with your integration of this upon request. Please send all requests to his email as stated in the above paragraph. Currently this is a free service available to any who request it. Be aware, however, that Argzero is also only human and has a job too and has the right to deny you this service if he so chooses. In use of or integration of any content of AQGL including but not limited to source code, assets, or other materials provided by Argzero, you both acknowledge that you are aware of and agree to these terms. 
 
-The music[which will be here] belongs to Argzero under Creative Commons.
+You can probably expect a response within 2-5 business days. If not, post an issue here stating that he has not responded to you. It is quite possible that Argzero's email provider labeled your message as spam. If you would like Argzero’s undivided attention and you have a deadline to meet or other special circumstances, feel free to contact him regarding payments for contract work or other form of employment by his email at forrest@argzero.org. If you need to reach Argzero for an emergency ONLY, contact him at his personal email at forrest.z.shooster@gmail.com.
 
 PLEASE REFER TO THE GNU GENERAL PUBLIC LICENSE v2.0 AS INCLUDED BELOW FOR ALL TERMS NOT STATED ABOVE. 
-DO NOTE, THAT ARGZERO'S STATEMENTS ABOVE, AS WELL AS ANY PIECE OF WRITING WHICH HE CHOOSES TO ADD TO THIS REPO THAT STATES OTHERWISE MAY OVERRIDE THE TERMS OF THE GNU AS THEY APPLY TO THIS PROGRAM.
+
+DO NOTE, THAT ARGZERO'S STATEMENTS ABOVE, AS WELL AS ANY PIECE OF WRITING WHICH HE CHOOSES TO ADD TO THIS REPOSITORY THAT STATES OTHERWISE MAY OVERRIDE THE TERMS OF THE GNU AS THEY APPLY TO THIS PROGRAM.
 
                     GNU GENERAL PUBLIC LICENSE
                        Version 2, June 1991
@@ -50,7 +51,7 @@ distribute copies of the software, or if you modify it.
 gratis or for a fee, you must give the recipients all the rights that
 you have.  You must make sure that they, too, receive or can get the
 source code.  And you must show them these terms so they know their
-rights.
+rights. 
 
   We protect your rights with two steps: (1) copyright the software, and
 (2) offer you this license which gives you legal permission to copy,

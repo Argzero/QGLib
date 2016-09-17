@@ -1,7 +1,9 @@
+#include <QDebug>
 #include "qglmath.h"
-
-#include "../vector3.h"
-#include "../vector2.h"
+#include "../geometry/vector3.h"
+#include "../geometry/vector2.h"
+#include "../geometry/line.h"
+#include "../geometry/plane.h"
 
 // Average of Vector3 objects
 Vector3 QGLMath::AvgVector3(QVector<Vector3> pts)
@@ -81,4 +83,34 @@ GLint QGLMath::project(GLdouble objx, GLdouble objy, GLdouble objz,
 
     *winz = (1 + in[2]) / 2;
     return GL_TRUE;
+}
+
+bool QGLMath::projectHitTriangle(Line l, Vector3 a, Vector3 b, Vector3 c)
+{
+    Plane plane = Plane(a,b,c);
+    Vector3 p /*on plane*/ = l.projectToPlane(plane);
+    qDebug()<<p.ToString();
+
+    // BARYCENTRIC COORDINATES
+    float abc,pbc,pca;
+    abc = plane.normal.dot((b-a).cross(c-a));
+    pbc = plane.normal.dot((b-p).cross(c-p));
+    pca = plane.normal.dot((c-p).cross(a-p));
+
+    qDebug()<< "AREA ABC: " << abc;
+    qDebug()<< "AREA PBC: " << pbc/abc;
+    qDebug()<< "AREA PCA: " << pca/abc;
+    qDebug()<< "GAMMA: " << 1.0f - (pbc/abc) - (pca/abc);
+
+    Vector3 bary(pbc/abc,pca/abc,1.0f - (pbc/abc) - (pca/abc));
+    // X,Y,Z ----> alpha, beta, gamma
+    // Checks if barycentric coordinates are inside the triangle
+    if(bary.X<0||bary.X>1||bary.Y<0||bary.Y>1||bary.Z<0||bary.Z>1){
+        qDebug()<<"f";
+        return false;
+    }
+    else{
+        qDebug()<<"t";
+        return true;
+    }
 }

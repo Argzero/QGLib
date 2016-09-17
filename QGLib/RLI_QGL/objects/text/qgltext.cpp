@@ -1,48 +1,61 @@
+#include <QDebug>
+
+#include "qglwindow.h"
 #include "qgltext.h"
-#include "../../qglconstants.hpp"
+#include "../../utils/qglconstants.hpp"
 
 using namespace QGLConstants;
 
-QGLText::QGLText()
-    :QGLObject(TEXT, NULL, Vector3::Zero, CENTER_MID)
+QGLText::QGLText(string _font)
+    :QGLObject(TEXT, NULL, Vector3::Zero, Vector3(1,1,1), Vector3(1,1,1), CENTER_MID)
 {
     text = "";
     size = 18;
     color = Qt::red;
-    if(SHOW_DEBUG)
-        qDebug("QGLText Created.");
+    font = _font;
+    QFontMetrics fm(QFont(QString::fromStdString(this->font), this->size));
+    int pixelWidth = fm.width(QString::fromStdString(this->text));
+    int pixelHeight = fm.height();
+    width = pixelWidth;
+    height = pixelHeight;
+    if(SHOW_CONSTRUCTION)
+        qDebug("QGLText Created");
 }
 
-QGLText::QGLText(QGLObject *_parent, Vector3 _pos, string _text, int _size, QColor _color, ALIGN _align)
-    :QGLObject(TEXT, _parent, _pos, _align)
+QGLText::QGLText(QGLObject *_parent, Vector3 _pos, string _text, int _size, string _font, QColor _color, ALIGN _align, Vector3 _scale, Vector3 _rot)
+    :QGLObject(TEXT, _parent, _pos, _rot, _scale, _align)
 {
     text = _text;
     size = _size;
     color = _color;
+    font = _font;
+    QFontMetrics fm(QFont(QString::fromStdString(this->font), this->size));
+    int pixelWidth = fm.width(QString::fromStdString(this->text));
+    int pixelHeight = fm.height();
+    width = pixelWidth;
+    height = pixelHeight;
+    if(SHOW_CONSTRUCTION)
+        qDebug("QGLText Created");
 }
 
 QGLText::~QGLText()
 {
-    if(SHOW_DEBUG)
+    if(SHOW_DESTRUCTION)
         qDebug("~Text");
 }
 
-void QGLText::update()
+void QGLText::Update()
 {
-    QGLObject::update();
-}
-
-void QGLText::contains(Vector2 point)
-{
-// NEVER COLLIDES UNLESS YOU WANT IT TO [Why would you ever want this?]
+    QGLObject::Update();
 }
 
 /*TODO: Make work with multiple fonts*/
-void QGLText::draw(QPainter* p)
+void QGLText::Draw(QPainter* p)
 {
     glDisable(GL_LIGHTING);
     glDisable(GL_DEPTH_TEST);
-
+    if(QGLConstants::SHOW_OBJ_SCREEN_POS)
+        qDebug() << "QGLText @ " << GetPosition().ToString();
     Vector3 pos = GetPosition();
     pos.Z = 0; // Z NOT YET SUPPORTED!!!
 
@@ -61,11 +74,15 @@ void QGLText::draw(QPainter* p)
             &textPosX, &textPosY, &textPosZ);
     textPosY = height - textPosY; // y is inverted
 
-    QFontMetrics fm(QFont("Segoe UI", this->size));
+    QFontMetrics fm(QFont(QString::fromStdString(this->font), this->size));
     int pixelWidth = fm.width(QString::fromStdString(this->text));
     int pixelHeight = fm.height();
+    width = pixelWidth;
+    height = pixelHeight;
+
     int xOff=0;
     int yOff=0;
+
 
     switch(this->alignment)
     {
@@ -104,9 +121,9 @@ void QGLText::draw(QPainter* p)
     // Render text
     p->beginNativePainting();
     p->setPen(this->color);
-    p->setFont(QFont("Segoe UI", this->size));
+    p->setFont(QFont(QString::fromStdString(font), this->size));
     p->drawText(textPosX + xOff,
                 textPosY + yOff, QString::fromStdString(this->text));
     p->endNativePainting();
-    QGLObject::draw(p);
+    QGLObject::Draw(p);
 }

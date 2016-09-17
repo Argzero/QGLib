@@ -3,8 +3,9 @@
 
 #include <QGLWidget>
 
-#include "../vector3.h"
-#include "../vector2.h"
+#include "../geometry/vector3.h"
+#include "../geometry/vector2.h"
+#include "../geometry/line.h"
 
 class QGLMath
 {
@@ -23,6 +24,9 @@ public:
     // Average of Vector objects
     static Vector3 AvgVector3(QVector<Vector3> pts);
     static Vector2 AvgVector2(QVector<Vector2> pts);
+
+    // 3D Math
+    static bool projectHitTriangle(Line l, Vector3 a, Vector3 b, Vector3 c);
 };
 
 #endif // QGLMATH_H

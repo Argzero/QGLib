@@ -15,6 +15,11 @@ public:
 
     // Functions
     Vector2 normalized();
+    Vector2 rotate(const float& angle);
+    Vector2 cross(Vector2);
+    float dot(Vector2);
+    float angleTo(Vector2);
+    float angleFrom(Vector2);
     float mag();
 
     // Operators
@@ -30,6 +35,7 @@ public:
 
     // Special Case
     static Vector2 Zero;
+    QString ToString();
 };
 
 #endif // VECTOR2_H

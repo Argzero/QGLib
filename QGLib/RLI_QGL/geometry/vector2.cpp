@@ -66,4 +66,25 @@ Vector2& Vector2::operator /=(const float& other)
     return VALUE;
 }
 
+// Vector 3DMath
+float Vector2::dot(Vector2 b)
+{
+    return this->X*b.X + this->Y*b.Y;
+}
+
+Vector2 Vector2::cross(Vector2 b)
+{
+    return Vector2(this->X*b.Y, this->Y*b.X);
+}
+
+float Vector2::angleTo(Vector2 b)
+{
+    return this->dot(b)/(b.mag() * this->mag());
+}
+
+float Vector2::angleFrom(Vector2 b)
+{
+    return b.angleTo(VALUE);
+}
+
 Vector2 Vector2::Zero = Vector2();

@@ -1,0 +1,17 @@
+Graphics:
+- Shader Functionality
+- Rotational Functionality for shapes and sub-objects
+- Lighting
+- 3D Shapes
+- Custom 3D Shapes -> Rename polygon to surface
+
+
+Scenes:
+- Sub-scenes
+- Scene Rotation and sub-object rotation
+
+
+Clicking on objects: 
+- Blackpawn, point in poly
+- project line into plane and get intersection point
+- use point in KD-Tree to detect mouse-hover/click

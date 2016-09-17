@@ -1,110 +1,165 @@
 #include <QDebug>
 
 #include "qglobject.h"
-#include "shapes/qglshape.h"
-#include "shapes/triangles/qgltriangle.h"
-#include "shapes/quads/qglquad.h"
-#include "shapes/polygons/qglpolygon.h"
-#include "shapes/qglshape.h"
+#include "scenes/scenenode.h"
+//#include "shapes/qglshape.h"
+//#include "shapes/triangles/qgltriangle.h"
+//#include "shapes/quads/qglquad.h"
+//#include "shapes/surfaces/qglsurface.h"
+//#include "shapes/qglshape.h"
 #include "text/qgltext.h"
-#include "../qglconstants.hpp"
-
+#include "../utils/qglconstants.hpp"
 using namespace QGLConstants;
 
 int QGLObject::countCreated = 0;
 
-QGLObject::QGLObject(QGLObject::TYPE _type, QGLObject *_parent, Vector3 _pos, QGLObject::ALIGN _align)
+QGLObject::QGLObject(QGLObject::TYPE _type, QGLObject *_parent, Vector3 _pos, Vector3 _rot, Vector3 _scale, QGLObject::ALIGN _align, QGLObject::POSITIONING _posType)
 {
     type = _type;
     parent = _parent;
-    children = new QVector<QGLObject*>();
+    if(parent!=NULL){
+        parent->children.push_back(this);
+        window = parent->window;
+    }
     position = _pos;
-    alignment = _align;
+    rotation = _rot;
+    scale = _scale;
+    alignment = _align; // NEED TO MOVE THIS INTO AN INHERITABLE CLASS (IAlignable) : not all QGLObjects use this feature or even CAN use it
+    positioning = _posType;
+    enabled = true;
     id = QGLObject::countCreated;
     QGLObject::countCreated += 1;
+    if(SHOW_CONSTRUCTION)
+        qDebug("QGLObject Created!");
 }
 
 QGLObject::~QGLObject()
 {
-    QVector<QGLObject*> _obj_cpy = *children;
-    while(_obj_cpy.size()>0){
-        if(SHOW_DEBUG)
+   if(SHOW_DESTRUCTION)
+        qDebug("START ~QGLObject");
+    while(children.size()>0){
+        if(SHOW_DESTRUCTION)
             qDebug("Killing Children...");
-        TYPE t = _obj_cpy.first()->type;
+        TYPE t = children.first()->type;
 
         switch(t){
         case EMPTY:
-            delete _obj_cpy.takeFirst();
-            qDebug("Undefined QGLObject deleted.");
+            delete children.takeFirst();
+            if(SHOW_DESTRUCTION_WARNINGS)
+                qDebug("Undefined QGLObject deleted.");
             break;
-        case SHAPE:
+        /*case SHAPE:
             switch(static_cast<QGLShape*>(_obj_cpy.first())->shape)
             {
             case QGLShape::EMPTY:
                 delete static_cast<QGLShape*>(_obj_cpy.takeFirst());
-                if(SHOW_DEBUG)
-                    qDebug("Deleted unspecified QGLShape.");
+                if(SHOW_DESTRUCTION_WARNINGS)
+                    qDebug("WARNING: Deleted unspecified QGLShape.");
                 break;
             case QGLShape::TRIANGLE:
                 delete static_cast<QGLTriangle*>(_obj_cpy.takeFirst());
-                if(SHOW_DEBUG)
+                if(SHOW_DESTRUCTION)
                     qDebug("Triangle deleted.");
                 break;
             case QGLShape::CIRCLE:
                 delete _obj_cpy.takeFirst(); // TODO: CREATE CIRCLE AND MODIFY THIS!
-                if(SHOW_DEBUG)
+                if(SHOW_DESTRUCTION_WARNINGS)
                     qDebug("WARNING: MEMORY LEAK, CIRCLE delete not defined!");
                 break;
             case QGLShape::QUAD:
                 delete static_cast<QGLQuad*>(_obj_cpy.takeFirst());
-                if(SHOW_DEBUG)
+                if(SHOW_DESTRUCTION)
                     qDebug("Rect deleted.");
                 break;
-            case QGLShape::POLYGON:
-                delete static_cast<QGLPolygon*>(_obj_cpy.takeFirst());
-                if(SHOW_DEBUG)
-                    qDebug("Polygon deleted.");
+            case QGLShape::SURFACE:
+                delete static_cast<QGLSurface*>(_obj_cpy.takeFirst());
+                if(SHOW_DESTRUCTION)
+                    qDebug("Surface/Polygon deleted.");
                 break;
             default:
                 delete _obj_cpy.takeFirst();
-                if(SHOW_DEBUG)
+                if(SHOW_DESTRUCTION_WARNINGS)
                     qDebug("WARNING: MEMORY LEAK, UNKNOWN_TYPE delete functionality unable to be determined!");
                 break;
             }
-            break;
+            break;*/
         case TEXT:
-            delete static_cast<QGLText*>(_obj_cpy.takeFirst());
-            if(SHOW_DEBUG)
+            delete dynamic_cast<QGLText*>(children.takeFirst());
+            if(SHOW_DESTRUCTION)
                 qDebug() << "Text deleted.";
             break;
+        case SCENE:
+            delete dynamic_cast<SceneNode*>(children.takeFirst());
+            if(SHOW_DESTRUCTION)
+                qDebug() << "Scene deleted.";
+            break;
         default:
-            delete _obj_cpy.takeFirst();
-            if(SHOW_DEBUG)
-                qDebug() << "Other QGLObject type deleted.";
+            delete children.takeFirst();
+            if(SHOW_DESTRUCTION_WARNINGS)
+                qDebug() << "WARNING: OTHER QGLObject type deleted.";
             break;
         }
     }
 
-    delete children;
     parent = NULL;
+    delete parent;
     window = NULL;
+    delete window;
+
+    if(SHOW_DESTRUCTION)
+        qDebug("END ~QGLObject");
 }
 
 Vector3 QGLObject::GetPosition()
 {
-    return (parent!=NULL)? parent->GetPosition() + position: position;
+    return (parent!=NULL)? parent->GetPosition() + Vector3(position.X*parent->GetScale().X,
+                                                           position.Y*parent->GetScale().Y,
+                                                           position.Z*parent->GetScale().Z): position;
 }
 
-void QGLObject::update()
+Vector3 QGLObject::GetScale()
 {
-    //qDebug() << children->length();
-    for(int i = 0; i<children->length(); i++)
-        children->at(i)->update();
+    return (parent!=NULL)? Vector3(scale.X*parent->GetScale().X,
+                                   scale.Y*parent->GetScale().Y,
+                                   scale.Z*parent->GetScale().Z): scale;
 }
 
-void QGLObject::draw(QPainter *p)
+Vector3 QGLObject::GetRotation()
+{
+    return (parent!=NULL)? Vector3(rotation.X*parent->GetScale().X,
+                                   rotation.Y*parent->GetScale().Y,
+                                   rotation.Z*parent->GetScale().Z): rotation;
+}
+
+void QGLObject::Update()
+{
+    qDebug() << "QGLObject BASE: " << children.length();
+    for(int i = 0; i<children.length(); i++){
+        children.at(i)->parent = this;
+        children.at(i)->Update();
+    }
+}
+
+void QGLObject::Draw(QPainter *p)
 {
     //qDebug() << children->length();
-    for(int i = 0; i<children->length(); i++)
-        children->at(i)->draw(p);
+    for(int i=0; i < children.length(); i++){
+        // qDebug("QGLWINDOW OBJECT DRAW");
+        if(children.at(i)->type==QGLObject::SCENE)
+            continue;
+        children.at(i)->Draw(p);
+    }
+    for(int i=0; i < children.length(); i++){
+        // qDebug("QGLWINDOW SCENE DRAW");
+        if(children.at(i)->type!=QGLObject::SCENE)
+            continue;
+        children.at(i)->Draw(p);
+    }
+}
+
+void QGLObject::AddChild(QGLObject* _child)
+{
+    _child->parent = this;
+    children.push_back(_child);
+    children.last()->window = window;
 }

@@ -3,11 +3,9 @@
 
 #include <QVector>
 #include <QPainter>
-#include <QGLWidget>
-
-#include "../vector3.h"
-#include "../vector2.h"
-
+#include <QOpenGLWidget>
+#include "../geometry/vector3.h"
+#include "../geometry/vector2.h"
 class QGLObject
 {
 public:
@@ -16,10 +14,9 @@ public:
         EMPTY,
         TEXT,
         SHAPE,
-        MODEL
+        SCENE
     } TYPE;
 
-    // Alignment
     typedef enum
     {
         CENTER_TOP,
@@ -40,23 +37,48 @@ public:
         FULL_FRAME
     } FRAME_TYPE; // Outlines of the polygon divisions
 
+    typedef enum
+    {
+        RELATIVE,
+        ABSOLUTE
+    } POSITIONING;
+
     QGLObject(QGLObject::TYPE _type = EMPTY, QGLObject *_parent = NULL,
-              Vector3 _pos = Vector3::Zero, QGLObject::ALIGN _align = QGLObject::CENTER_MID);
+              Vector3 _pos = Vector3::Zero, Vector3 _rot = Vector3(1,1,1),
+              Vector3 _scale = Vector3(1,1,1), QGLObject::ALIGN _align = QGLObject::CENTER_MID,
+              /*TODO: Implement in subclasses*/
+              QGLObject::POSITIONING _posType = QGLObject::ABSOLUTE);
     virtual ~QGLObject();
 
-    virtual void update();
-    virtual void draw(QPainter *p);
+    // Object State Change and Display
+    virtual void Update();
+    virtual void Draw(QPainter *p);
+
+    // Object State Calculation
     Vector3 GetPosition();
-    virtual void contains(Vector2 point)=0;
+    Vector3 GetScale();
+    Vector3 GetRotation();
 
-    QGLWidget *window;
+    // Object References
+    QOpenGLWidget *window;
     QGLObject *parent;
+    QVector<QGLObject*> children;
 
-    QVector<QGLObject*> *children;
+    // Object Attributes
     TYPE type;
     ALIGN alignment;
+    POSITIONING positioning;
+    Vector3 rotation;
+    Vector3 scale;
+
+    // Identification and Configuration
     int id;
+    bool enabled;
     static int countCreated;
+
+    // Adding Child Objects
+    void AddChild(QGLObject* _child);
+
 protected:
     Vector3 position;
 };
@@ -64,7 +86,6 @@ protected:
 /*************************************************************************
  * Additional functionality for all new QGLObjects should be added
  * directly to those objects.
- *
- * If update and draw are undefined in subclasses they will do nothing.
  **************************************************************************/
+
 #endif // QGLOBJECT_H

@@ -1,22 +1,25 @@
 #include "qglquad.h"
 #include "../../../qglwindow.h"
 #include "../../../utils/qglmath.h"
-#include "../../../qglconstants.hpp"
+#include "../../../utils/qglconstants.hpp"
 
 using namespace QGLConstants;
 
 QGLQuad::QGLQuad() :
-    QGLShape(NULL, Vector3::Zero, CENTER_MID, false, Qt::black)
+    QGLShape(NULL, Vector3::Zero, false, CENTER_MID, false, Qt::black)
 {
     shape = QUAD;
+
+    if(SHOW_CONSTRUCTION)
+        qDebug("QGLQuad Created");
 }
 
 QGLQuad::QGLQuad(QGLObject *_parent, Vector3 _pos,
-                 QVector<Vector3> *_vertices, QColor _color,
+                 QVector<Vector3> *_vertices, QColor _color, bool _mouseEnable,
                  bool _wireframe, QColor _frameColor,
                  RENDER_TYPE _renderType,
                  FRAME_TYPE _frameType):
-    QGLShape(_parent, _pos, CENTER_MID, _wireframe, _frameColor)
+    QGLShape(_parent, _pos, false, CENTER_MID, _wireframe, _frameColor)
 {
     shape = QUAD;
 
@@ -35,24 +38,25 @@ QGLQuad::QGLQuad(QGLObject *_parent, Vector3 _pos,
     colors -> append(_color);
     frameType = _frameType;
     renderType = _renderType;
-    if(SHOW_DEBUG)
-        qDebug() << "QGLQuad Created.";
+
+    if(SHOW_CONSTRUCTION)
+        qDebug("QGLQuad Created");
 }
 
 QGLQuad::QGLQuad(QGLObject *_parent, Vector3 _pos,
-                 QVector<Vector3> *_vertices, QVector<QColor> *_colors,
+                 QVector<Vector3> *_vertices, QVector<QColor> *_colors, bool _mouseEnable,
                  bool _wireframe, QColor _frameColor,
                  RENDER_TYPE _renderType,
                  FRAME_TYPE _frameType):
-    QGLShape(_parent, _pos, CENTER_MID, _wireframe, _frameColor)
+    QGLShape(_parent, _pos, false, CENTER_MID, _wireframe, _frameColor)
 {
     shape = QUAD;
 
     vertices = new QVector<Vector3>();
     colors = new QVector<QColor>();
-    if(_colors->length()!=4 && (_renderType != FOUR_TRIANGLES))
+    if(_colors->length()!=4 && (_renderType != FOUR_TRIANGLES) && SHOW_DEBUG)
     {
-        qDebug() << "TWO_TRIANGLES construction requires exactly four colors.\nFOUR_TRIANGLES construction requires exactly five colors.\nThe last color is the centerpoint color.\nPROVIDED: " << _colors->length();
+        throw("TWO_TRIANGLES construction requires exactly four colors.\nFOUR_TRIANGLES construction requires exactly five colors.\nThe last color is the centerpoint color");
     }
 
     for(int i = 0; i<4; i++)
@@ -69,26 +73,23 @@ QGLQuad::QGLQuad(QGLObject *_parent, Vector3 _pos,
     colors -> append(_colors->at(4));
     frameType = _frameType;
     renderType = _renderType;
-    if(SHOW_DEBUG)
-        qDebug() << "QGLQuad Created.";
+
+    if(SHOW_CONSTRUCTION)
+        qDebug("QGLQuad Created");
 }
 
 QGLQuad::~QGLQuad()
 {
+    if(SHOW_DESTRUCTION)
+        qDebug("~QGLQuad");
 }
 
-void QGLQuad::update()
+void QGLQuad::Update()
 {
-    QGLShape::update();    
+    QGLShape::Update();
 }
 
-void QGLQuad::contains(Vector2 point)
-{
-    //Vector2 mPos = (static_cast<QGLWindow*>(window))->mouse;
-
-}
-
-void QGLQuad::draw(QPainter *p)
+void QGLQuad::Draw(QPainter *p)
 {
     // Modest quads
     p->beginNativePainting();
@@ -146,7 +147,7 @@ void QGLQuad::draw(QPainter *p)
             break;
         default:
             break;
-    }
+        }
     }
     if(wireframe)
     {
@@ -188,10 +189,20 @@ void QGLQuad::draw(QPainter *p)
         }
     }
     p->endNativePainting();
-    QGLShape::draw(p);
+    QGLShape::Draw(p);
 }
 
 Vector3 QGLQuad::GetCenter()
 {
     return QGLMath::AvgVector3((*vertices));
+}
+
+bool QGLQuad::CheckClicked()
+{
+    return false;
+}
+
+bool QGLQuad::CheckMouseOver(QPainter* p)
+{
+    return false;
 }

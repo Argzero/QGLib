@@ -2,8 +2,9 @@
 #define QGLQUAD_H
 
 #include "../qglshape.h"
-#include "../../../vector3.h"
+#include "../../../geometry/vector3.h"
 
+class QGLObject;
 class QGLQuad : public QGLShape
 {
 public:
@@ -24,21 +25,25 @@ public:
     QGLQuad();
     QGLQuad(QGLObject *_parent, Vector3 _pos,
             QVector<Vector3> *_vertices, QColor _color,
-            bool _wireframe= false, QColor _frameColor=Qt::black,
+            bool _mouseEnable = false, bool _wireframe = false,
+            QColor _frameColor = Qt::black,
             RENDER_TYPE _renderType = TWO_TRIANGLES,
             FRAME_TYPE _frameType = FULL_FRAME);
     QGLQuad(QGLObject *_parent, Vector3 _pos,
             QVector<Vector3> *_vertices, QVector<QColor> *_colors,
-            bool _wireframe= false, QColor _frameColor=Qt::black,
+            bool _mouseEnable = false, bool _wireframe = false,
+            QColor _frameColor = Qt::black,
             RENDER_TYPE _renderType = TWO_TRIANGLES,
             FRAME_TYPE _frameType = FULL_FRAME);
     ~QGLQuad();
 
     // Functions
-    virtual void update();
-    virtual void draw(QPainter *p);
-    virtual void contains(Vector2 point);
+    virtual void Update();
+    virtual void Draw(QPainter *p);
     virtual Vector3 GetCenter();
+    //MOUSE
+    virtual bool CheckClicked();
+    virtual bool CheckMouseOver(QPainter*);
 
     // Variables
 protected:
