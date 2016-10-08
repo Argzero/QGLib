@@ -9,15 +9,15 @@ using namespace QGLConstants;
 QGLText::QGLText(string _font)
     :QGLObject(TEXT, NULL, Vector3::Zero, Vector3(1,1,1), Vector3(1,1,1), CENTER_MID)
 {
-    text = "";
-    size = 18;
-    color = Qt::red;
-    font = _font;
+    this->text = "";
+    this->size = 18;
+    this->color = Qt::red;
+    this->font = _font;
     QFontMetrics fm(QFont(QString::fromStdString(this->font), this->size));
     int pixelWidth = fm.width(QString::fromStdString(this->text));
     int pixelHeight = fm.height();
-    width = pixelWidth;
-    height = pixelHeight;
+    this->width = pixelWidth;
+    this->height = pixelHeight;
     if(SHOW_CONSTRUCTION)
         qDebug("QGLText Created");
 }
@@ -25,15 +25,15 @@ QGLText::QGLText(string _font)
 QGLText::QGLText(QGLObject *_parent, Vector3 _pos, string _text, int _size, string _font, QColor _color, ALIGN _align, Vector3 _scale, Vector3 _rot)
     :QGLObject(TEXT, _parent, _pos, _rot, _scale, _align)
 {
-    text = _text;
-    size = _size;
-    color = _color;
-    font = _font;
+    this->text = _text;
+    this->size = _size;
+    this->color = _color;
+    this->font = _font;
     QFontMetrics fm(QFont(QString::fromStdString(this->font), this->size));
     int pixelWidth = fm.width(QString::fromStdString(this->text));
     int pixelHeight = fm.height();
-    width = pixelWidth;
-    height = pixelHeight;
+    this->width = pixelWidth;
+    this->height = pixelHeight;
     if(SHOW_CONSTRUCTION)
         qDebug("QGLText Created");
 }
@@ -59,9 +59,6 @@ void QGLText::Draw(QPainter* p)
     Vector3 pos = GetPosition();
     pos.Z = 0; // Z NOT YET SUPPORTED!!!
 
-    // Identify x and y locations to render text within widget
-    int height = window->height();
-
     GLdouble model[4][4], proj[4][4];
     GLint view[4];
     glGetDoublev(GL_MODELVIEW_MATRIX, &model[0][0]);
@@ -72,8 +69,6 @@ void QGLText::Draw(QPainter* p)
     QGLMath::project(pos.X, pos.Y, pos.Z,
             &model[0][0], &proj[0][0], &view[0],
             &textPosX, &textPosY, &textPosZ);
-    textPosY = height - textPosY; // y is inverted
-
     QFontMetrics fm(QFont(QString::fromStdString(this->font), this->size));
     int pixelWidth = fm.width(QString::fromStdString(this->text));
     int pixelHeight = fm.height();

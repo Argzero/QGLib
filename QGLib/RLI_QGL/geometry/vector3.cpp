@@ -105,13 +105,11 @@ float Vector3::dot(Vector3 b)
     return this->X*b.X + this->Y*b.Y + this->Z*b.Z;
 }
 
-//Vector3 Vector3::rotate(const Vector3& angle){
-
-//}
-
-//Vector3 Vector3::rotate(const Quaternion& angle){
-
-//}
+Vector3 Vector3::rotate(const Vector3& angle){
+    return Vector3(this->X*(cos(angle.Y)-sin(angle.Y))*(cos(angle.Z)+sin(angle.Z)),
+                   this->Y*(cos(angle.Z)-sin(angle.Z))*(cos(angle.X)+sin(angle.X)),
+                   this->Z*(cos(angle.X)-sin(angle.X))*(cos(angle.Y)+sin(angle.Y)));
+}
 
 Vector3 Vector3::Zero = Vector3();
 

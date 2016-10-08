@@ -18,9 +18,9 @@ public:
 
     // Functions
     Vector3 normalized();
-    //Vector3 rotate(const Quaternion& angle);
-    Vector3 cross(Vector3);
-    float dot(Vector3);
+    Vector3 rotate(const Vector3& angle);
+    Vector3 cross(const Vector3);
+    float dot(const Vector3);
     float mag();
 
     // Operators
