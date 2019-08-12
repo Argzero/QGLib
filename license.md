@@ -1,19 +1,25 @@
-#ACCREDITATION & LICENSING
+#ACCREDITATION & LICENSING - ARGZERO PROJECT LICENSE SUPERSEDING LICENSE
 [NOTE THAT THE LICENSE USED IN THIS SOFTWARE AND ITS TERMS ARE LIABLE TO CHANGE AND IT IS YOUR RESPONSIBILITY AS A USER OF THIS SOFTWARE TO TAKE NOTE OF THOSE CHANGES. BY USING, MODIFYING, OR INCORPORATING THIS PROJECT INTO YOUR OWN WORK, YOU INDICATE THAT YOU AGREE TO THESE TERMS; TO CEASE FOLLOWING THE AGREEMENT, CEASE ALL USE OF THE SOFTWARE OR ITS VARIOUS PARTS IN ALL PROJECTS. IF YOU HAVE THIS SOFTWARE IN ANY PROJECT THIS AGREEMENT STILL STANDS]
 
-IF AT ANY POINT ARGZERO IS USED AS A TITLE IN THIS DOCUMENT, IT MAY BE INTERCHANGED WITH FORREST ZACHARY SHOOSTER. ESSENTIALLY, IF IT APPLIES TO ARGZERO, IT ALSO APPLIES TO FORREST ZACHARY SHOOSTER (this implies that you may use either name to give credit). In the event that an Argzero project becomes an Argzero Technologies, LLC project, you are required to use the business name Argzero Technologies, LLC. 
+IF AT ANY POINT ARGZERO IS USED AS A TITLE IN THIS DOCUMENT, IT MAY BE INTERCHANGED WITH FORREST ZACHARY SHOOSTER. ESSENTIALLY, IF IT APPLIES TO ARGZERO, IT ALSO APPLIES TO FORREST ZACHARY SHOOSTER (this implies that you may use either name to give credit). In the event that an Argzero project becomes an Argzero Technologies, LLC project, you are required to use the business name Argzero Technologies, LLC to give credit for use. This is not true if you used the project before this change occurred and instead you may use Argzero or Forrest Zachary Shooster to give credit. 
 
-To use the Argzero QGLib (AQGL), You must give credit to Argzero for use. Otherwise, you may feel free to modify the code or use it in other projects, however know that in modifying the code for your purposes you should (MUST) notify Argzero of your use of AQGL at his email at forrest@argzero.org. If Argzero is already aware of your use of his project, you are excluded from the requirement of notifying him of your use of AQGL.
+To use the Argzero project in this repo (APR), You must give credit to Argzero for use. Otherwise, you may feel free to modify the code or use it in other projects, however know that in modifying the code for your purposes you should (MUST) notify Argzero of your use of APR at his email at forrest@argzero.org. If Argzero is already aware of your use of his project, you are excluded from the requirement of notifying him of your use of the project.
 
-Additionally, Argzero does humbly request that you notify him of any improvements you have come up with for his AQGL so that he may continue to provide quality AQGL in the future both for your sake and his.
+Additionally, Argzero does humbly request that you notify him of any improvements you have come up with for his APR so that he may continue to provide quality APR in the future both for your sake and his.
 
-Argzero is available to help you with your integration of this upon request. Please send all requests to his email as stated in the above paragraph. Currently this is a free service available to any who request it. Be aware, however, that Argzero is also only human and has a job too and has the right to deny you this service if he so chooses. In use of or integration of any content of AQGL including but not limited to source code, assets, or other materials provided by Argzero, you both acknowledge that you are aware of and agree to these terms. 
+Argzero is available to help you with your integration of this upon request. Please send all requests to his email as stated in the above paragraph. Currently this is a free service available to any who request it. Be aware, however, that Argzero is also only human and has a job too and has the right to deny you this service if he so chooses. In use of or integration of any content of APR including but not limited to source code, assets, or other materials provided by Argzero, you both acknowledge that you are aware of and agree to these terms. 
 
-You can probably expect a response within 2-5 business days. If not, post an issue here stating that he has not responded to you. It is quite possible that Argzero's email provider labeled your message as spam. If you would like Argzero’s undivided attention and you have a deadline to meet or other special circumstances, feel free to contact him regarding payments for contract work or other form of employment by his email at forrest@argzero.org. If you need to reach Argzero for an emergency ONLY, contact him at his personal email at forrest.z.shooster@gmail.com.
+You can probably expect a response within 2-7 business days. If not, post an issue here stating that he has not responded to you. It is quite possible that Argzero's email provider labeled your message as spam. If you would like Argzero’s undivided attention and you have a deadline to meet or other special circumstances, feel free to contact him regarding payments for contract work or other form of employment by his email at forrest@argzero.org. If you need to reach Argzero for an emergency ONLY, contact him at his personal email at forrest.z.shooster@gmail.com.
 
-PLEASE REFER TO THE GNU GENERAL PUBLIC LICENSE v2.0 AS INCLUDED BELOW FOR ALL TERMS NOT STATED ABOVE. 
+PLEASE REFER TO THE GNU GENERAL PUBLIC LICENSE v2.0 AS INCLUDED BELOW FOR ALL TERMS NOT STATED ABOVE. As an additional note, if for any reason you wish to have a different license for the use of this software, you must email Argzero at forrest@argzero.org.
 
 DO NOTE, THAT ARGZERO'S STATEMENTS ABOVE, AS WELL AS ANY PIECE OF WRITING WHICH HE CHOOSES TO ADD TO THIS REPOSITORY THAT STATES OTHERWISE MAY OVERRIDE THE TERMS OF THE GNU AS THEY APPLY TO THIS PROGRAM.
+
+PLEASE NOTE: THE FOLLOWING IS NOT CONSIDERED THE PRIMARY LICENSE FOR THIS SOFTWARE. RATHER, THIS IS BEING USED TO SUPPLEMENT THE PRIMARY LICENSE.
+NOTE THAT IN ANY CIRCUMSTANCE WHERE THIS CONTRADICTS THE PRIMARY LICENSE, THE PRIMARY LICENSE TAKES PRECEDENT. 
+NEITHER LICENSE'S OTHER TERMS SHALL BE NULLIFIED BY THIS CONTRADICTION UNLESS SPECIFICALLY STATED IN THEIR TERMS AND, WHERE CONTRADICTORY, THE PRIMARY LICENSE ABOVE SHALL MAINTAIN PRIORITY.
+
+The following is the unchanged content of the GNU GPL, provided for reference.
 
                     GNU GENERAL PUBLIC LICENSE
                        Version 2, June 1991
